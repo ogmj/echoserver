@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SessionIndexMng.h"
 #include "IOCPType.h"
 #include "IOCPWorker.h"

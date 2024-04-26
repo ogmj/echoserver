@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SessionOfWMType.h"
 #include "SessionIndexMng.h"
 #include "ToGetIndexBySocketMng.h"

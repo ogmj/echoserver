@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define DPSYS_CREATEPLAYERORGROUP   0x0003
 #define DPSYS_DESTROYPLAYERORGROUP  0x0005

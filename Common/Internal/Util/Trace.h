@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define SelectFont(hdc, hfont)  ((HFONT)SelectObject((hdc), (HGDIOBJ)(HFONT)(hfont)))
 

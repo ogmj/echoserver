@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "ClientPacketHandler.h"
 #include "TypeMng.h"
 #include "BasePacket.h"

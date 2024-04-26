@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SessionOfIOCPType.h"
 #include "SessionIndexMng.h"
 #include "IOResult.h"
