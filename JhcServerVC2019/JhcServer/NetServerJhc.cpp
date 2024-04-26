@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "NetServerJhc.h"
 
 CNetServerJhc::CNetServerJhc()
