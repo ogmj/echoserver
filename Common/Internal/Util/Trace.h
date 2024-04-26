@@ -81,7 +81,7 @@ public:
 			ClientRect.bottom - ClientRect.top );
 		m_OldObject = SelectObject( m_BackHdc, m_BackBitmap );
 
-		m_Font = CreateFont( 14, 7, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, "����ü" );
+		m_Font = CreateFont( 14, 7, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, "굴림체" );
 		m_Brush = CreateSolidBrush( RGB( 255,255,255) );
 		m_OldFont = SelectFont( m_BackHdc, m_Font );
 
@@ -149,7 +149,7 @@ public:
 			ClientRect.bottom - ClientRect.top );
 		m_OldObject = SelectObject( m_BackHdc, m_BackBitmap );
 
-		m_Font = CreateFont( 14, 7, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, "����ü" );
+		m_Font = CreateFont( 14, 7, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, "굴림체" );
 		m_Brush = CreateSolidBrush( RGB( 255,255,255) );
 		m_OldFont = SelectFont( m_BackHdc, m_Font );
 
