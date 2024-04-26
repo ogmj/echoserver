@@ -3,8 +3,8 @@
 #include "SessionIndexMng.h"
 #include "IOResult.h"
 
-LPFN_ACCEPTEX               g_lpfnAcceptEx = NULL;
-LPFN_GETACCEPTEXSOCKADDRS   g_lpfnGetAcceptExSockaddrs = NULL;
+LPFN_ACCEPTEX               g_lpfnAcceptEx = nullptr;
+LPFN_GETACCEPTEXSOCKADDRS   g_lpfnGetAcceptExSockaddrs = nullptr;
 
 CSessionOfIOCPType::CSessionOfIOCPType()
 {
@@ -48,7 +48,7 @@ CSessionOfIOCPType::CSessionOfIOCPType( int nId, HANDLE hIOCP )
 	m_dwLocalIP = INADDR_NONE;
 	m_wLocalPort = 0;
 
-	m_hConnectThread = NULL;
+	m_hConnectThread = nullptr;
 }
 
 CSessionOfIOCPType::~CSessionOfIOCPType()
@@ -108,8 +108,8 @@ bool CSessionOfIOCPType::Connect( WORD wRemotePort, DWORD dwRemoteIP, DWORD dwSe
 	DWORD dwThreadID;
 
 	// call connect in thread because connect function is blocking method
-	m_hConnectThread = (HANDLE)_beginthreadex( NULL, 0, ConnectThread, (LPVOID)this, 0, (u_int*)&dwThreadID ); 
-	if( NULL == m_hConnectThread ) 
+	m_hConnectThread = (HANDLE)_beginthreadex( nullptr, 0, ConnectThread, (LPVOID)this, 0, (u_int*)&dwThreadID ); 
+	if( nullptr == m_hConnectThread ) 
 	{
 		m_nSessionErrorCode = ASE_SOCKET_ERROR;
 		m_dwSystemErrorCode = ::WSAGetLastError();
@@ -123,7 +123,7 @@ bool CSessionOfIOCPType::Connect( WORD wRemotePort, DWORD dwRemoteIP, DWORD dwSe
 
 u_int CSessionOfIOCPType::ConnectThread( void * param )
 {
-	if( NULL == param ) 
+	if( nullptr == param ) 
 		return 0;
 	CSessionOfIOCPType * pSession = reinterpret_cast< CSessionOfIOCPType* >( param );
 
@@ -176,7 +176,7 @@ bool CSessionOfIOCPType::RequestSend( DWORD dwLen )
 
 	m_wsabufSend.len = dwLen;
 	DWORD dwSent = 0, dwFlag = 0;
-	if (SOCKET_ERROR == WSASend( m_socket, &m_wsabufSend, 1, &dwSent, dwFlag, &m_ioSend, NULL ) ) 
+	if (SOCKET_ERROR == WSASend( m_socket, &m_wsabufSend, 1, &dwSent, dwFlag, &m_ioSend, nullptr ) ) 
 	{
 		DWORD dwErr = WSAGetLastError();
 		if( WSAEWOULDBLOCK != dwErr )
@@ -289,7 +289,7 @@ bool CSessionOfIOCPType::RequestRecv()
 {
 	DWORD dwRead =0 , dwFlag = 0;
 
-	if ( SOCKET_ERROR == WSARecv( m_socket, &(m_wsabufRecv), 1, &dwRead, &dwFlag, &m_ioRecv, NULL ) ) 
+	if ( SOCKET_ERROR == WSARecv( m_socket, &(m_wsabufRecv), 1, &dwRead, &dwFlag, &m_ioRecv, nullptr ) ) 
 	{
 		DWORD err = WSAGetLastError();
 		if ( ERROR_IO_PENDING != err ) 
@@ -307,7 +307,7 @@ bool CSessionOfIOCPType::RequestRecv( DWORD dwLen )
 {
 	DWORD dwRead =0 , dwFlag = 0;
 	
-	if ( SOCKET_ERROR == WSARecv( m_socket, &(m_wsabufRecv), 1, &dwRead, &dwFlag, &m_ioRecv, NULL ) ) 
+	if ( SOCKET_ERROR == WSARecv( m_socket, &(m_wsabufRecv), 1, &dwRead, &dwFlag, &m_ioRecv, nullptr ) ) 
 	{
 		DWORD err = WSAGetLastError();
 		if ( ERROR_IO_PENDING != err ) 
@@ -363,7 +363,7 @@ void CSessionOfIOCPType::OnIOCompletion( int nEvent, DWORD dwRet, ULONG_PTR dwKe
 				return;
 			}
 
-			if( NULL == ::CreateIoCompletionPort( reinterpret_cast< HANDLE >( m_socket ), m_hIOCP, m_nId, 0) ) // link to iocp
+			if( nullptr == ::CreateIoCompletionPort( reinterpret_cast< HANDLE >( m_socket ), m_hIOCP, m_nId, 0) ) // link to iocp
 			{	
 //				LOG( FORMAT( "CreateIoCompletionPort fail %d", ::GetLastError()));
 				Close( IORESULT::ACCEPT );
@@ -374,8 +374,8 @@ void CSessionOfIOCPType::OnIOCompletion( int nEvent, DWORD dwRet, ULONG_PTR dwKe
 				Close( IORESULT::ACCEPT );
 				return;
 			}
-			SOCKADDR_STORAGE* localSockaddr = NULL;
-			SOCKADDR_STORAGE* remoteSockaddr = NULL;
+			SOCKADDR_STORAGE* localSockaddr = nullptr;
+			SOCKADDR_STORAGE* remoteSockaddr = nullptr;
 			int localSockaddrLen ;
 			int remoteSockaddrLen ;
 			g_lpfnGetAcceptExSockaddrs( (void*)m_bufAccept,0, sizeof(SOCKADDR_STORAGE)+16, sizeof(SOCKADDR_STORAGE)+16, (SOCKADDR **)&localSockaddr, &localSockaddrLen, (SOCKADDR **)&remoteSockaddr, &remoteSockaddrLen);
@@ -418,7 +418,7 @@ void CSessionOfIOCPType::OnIOCompletion( int nEvent, DWORD dwRet, ULONG_PTR dwKe
 			m_wLocalPort = addr.sin_port;
 
 			// link to iocp 
-			if( NULL == ::CreateIoCompletionPort( reinterpret_cast< HANDLE >( m_socket ), m_hIOCP, m_nId, 0 ) )
+			if( nullptr == ::CreateIoCompletionPort( reinterpret_cast< HANDLE >( m_socket ), m_hIOCP, m_nId, 0 ) )
 			{ 
 				m_nSessionErrorCode = ASE_SOCKET_ERROR;
 				m_dwSystemErrorCode = ::GetLastError();

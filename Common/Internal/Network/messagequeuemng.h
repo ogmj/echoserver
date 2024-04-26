@@ -8,11 +8,11 @@ public:
 	CMessageQueueMng(){}
 	virtual ~CMessageQueueMng()
 	{
-		MESSAGE_INFO * p = NULL;
+		MESSAGE_INFO * p = nullptr;
 		while( 1 )
 		{   
 			p = this->Pop();
-			if( NULL != p )
+			if( nullptr != p )
 			{
 				delete p;
 			}
@@ -31,7 +31,7 @@ public:
 */
 	LPMESSAGE_INFO Pop()
 	{
-		MESSAGE_INFO * p = NULL;
+		MESSAGE_INFO * p = nullptr;
 		m_queueMessageMng.Pop( p );
 		return p;
 	}

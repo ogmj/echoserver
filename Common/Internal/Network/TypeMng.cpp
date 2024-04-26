@@ -7,7 +7,7 @@ class CWMType;
 
 CTypeMng::CTypeMng()
 {
-	m_pType = NULL;
+	m_pType = nullptr;
 }
 
 CTypeMng::~CTypeMng()

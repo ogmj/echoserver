@@ -57,7 +57,7 @@ public:
 		}
 
 		PHOSTENT pHostinfo = ::gethostbyname(szName);
-		if(NULL == pHostinfo) 
+		if(nullptr == pHostinfo) 
 		{
 			int err = ::WSAGetLastError();
 			return false;
@@ -87,7 +87,7 @@ public:
 		}
 
 		PHOSTENT pHostinfo = ::gethostbyname(szName);
-		if(NULL == pHostinfo) 
+		if(nullptr == pHostinfo) 
 		{
 			int err = ::WSAGetLastError();
 			return false;
@@ -109,7 +109,7 @@ public:
 	virtual bool ConvertIpAddress( const char* pszSrc, DWORD& dwDest )
 	{
 		PHOSTENT pHostinfo = ::gethostbyname(pszSrc);
-		if(NULL == pHostinfo) 
+		if(nullptr == pHostinfo) 
 		{
 			int err = ::WSAGetLastError();
 			return false;
@@ -127,12 +127,12 @@ public:
 
 	virtual bool ConvertIpAddress( DWORD dwRemoteIP, char * szAddr )
 	{
-		if( NULL == szAddr )
+		if( nullptr == szAddr )
 			return false;
 		IN_ADDR addr;
 		addr.S_un.S_addr = dwRemoteIP;
 		const char* p = inet_ntoa( addr );
-		if( NULL == p )
+		if( nullptr == p )
 			return false;
 //		::strcpy( szAddr, p );
 		strcpy_s( szAddr, 16, p );

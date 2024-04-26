@@ -15,7 +15,7 @@
 		{	\
 			return m_ItorEntries->second;	\
 		}	\
-		return NULL;	\
+		return nullptr;	\
 	}
 #define	ON_MSG( dwKey, hndlr )	\
 	pfn		= hndlr;	\
@@ -23,7 +23,7 @@
 
 
 #ifndef SAFE_DELETE
-#define SAFE_DELETE(x) { if (x) { delete x; x = NULL; } }
+#define SAFE_DELETE(x) { if (x) { delete x; x = nullptr; } }
 #endif
 
 

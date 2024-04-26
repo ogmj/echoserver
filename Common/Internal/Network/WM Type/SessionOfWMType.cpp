@@ -303,7 +303,7 @@ void  CSessionOfWMType::OnIoEvent ( DWORD event, DWORD error )
 bool  CSessionOfWMType::RequestRecv()
 {
 	DWORD dwRead =0 , dwFlag = 0;
-	if ( SOCKET_ERROR == WSARecv( m_socket, &(m_wsabufRecv), 1, &dwRead, &dwFlag, NULL, NULL ) ) 
+	if ( SOCKET_ERROR == WSARecv( m_socket, &(m_wsabufRecv), 1, &dwRead, &dwFlag, nullptr, nullptr ) ) 
 	{
 		DWORD err = WSAGetLastError();
 		if ( WSAEWOULDBLOCK != err ) 
@@ -334,7 +334,7 @@ bool CSessionOfWMType::RequestSend( DWORD dwLen )
 
 	m_wsabufSend.len = dwLen;
 	DWORD dwSent = 0, dwFlag = 0;
-	if (SOCKET_ERROR == WSASend( m_socket, &m_wsabufSend, 1, &dwSent, dwFlag, NULL, NULL ) ) 
+	if (SOCKET_ERROR == WSASend( m_socket, &m_wsabufSend, 1, &dwSent, dwFlag, nullptr, nullptr ) ) 
 	{
 		DWORD dwErr = WSAGetLastError();
 		if( WSAEWOULDBLOCK != dwErr )

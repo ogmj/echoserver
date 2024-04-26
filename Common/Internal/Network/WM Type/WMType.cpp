@@ -4,8 +4,8 @@
 #include "ToGetIndexBySocketMng.h"
 
 static  LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-static HANDLE	m_hEvent = NULL;
-static HWND		m_hWnd = NULL;
+static HANDLE	m_hEvent = nullptr;
+static HWND		m_hWnd = nullptr;
 
 
 CWMType::CWMType()
@@ -34,16 +34,16 @@ bool CWMType::Startup( int nMaxSession, DWORD dwThreadPerProcessor )
 		return false;
 	}
 
-	m_hEvent = ::CreateEvent( NULL, TRUE, FALSE, NULL);
-	if (NULL == m_hEvent)
+	m_hEvent = ::CreateEvent( nullptr, TRUE, FALSE, nullptr);
+	if (nullptr == m_hEvent)
 	{
 		//LOG( FORMAT("CreateEvent fail %d", ::GetLastError()));
 		return false;
 	}
 
 	//네트웤 메시지 처리 스레드 생성
-	m_hThreadHandle = (HANDLE)::_beginthreadex( NULL, 0, Work, reinterpret_cast< LPVOID >( this ), 0, reinterpret_cast< u_int* >( &m_dwThreadId ) );
-	if (NULL == m_hThreadHandle)
+	m_hThreadHandle = (HANDLE)::_beginthreadex( nullptr, 0, Work, reinterpret_cast< LPVOID >( this ), 0, reinterpret_cast< u_int* >( &m_dwThreadId ) );
+	if (nullptr == m_hThreadHandle)
 	{
 		DWORD err = ::GetLastError();
 		//LOG( FORMAT("CreateThread fail %d", err));
@@ -57,7 +57,7 @@ bool CWMType::Startup( int nMaxSession, DWORD dwThreadPerProcessor )
 	for ( int nId = nMaxSession; nId > 0; --nId ) 
 	{
 		CSessionOfWMType* p  = new CSessionOfWMType( nId );
-		if (NULL == p) 
+		if (nullptr == p) 
 		{
 			//LOG("new fail");
 			Cleanup();
@@ -81,7 +81,7 @@ bool CWMType::Cleanup()
 
 	for( int nId = m_nMaxSession; nId > 0; --nId )
 	{
-		CSessionOfWMType* p = NULL;
+		CSessionOfWMType* p = nullptr;
 		if( true == m_mapSessionMng.Find_Const( nId, p ) )
 		{
 			delete p;
@@ -89,9 +89,9 @@ bool CWMType::Cleanup()
 	}
 	m_mapSessionMng.Clear();
 
-	if ( NULL != m_hThreadHandle )
+	if ( nullptr != m_hThreadHandle )
 		::CloseHandle( m_hThreadHandle );
-	if ( NULL != m_hEvent )
+	if ( nullptr != m_hEvent )
 		::CloseHandle( m_hEvent );
 
 	::WSACleanup();
@@ -104,8 +104,8 @@ u_int CWMType::Work (LPVOID /*param*/)
 	//assert(manager);
 
 
-	HINSTANCE hInstance = (HINSTANCE) ::GetModuleHandle(NULL); // for creating window
-	if (NULL == hInstance)
+	HINSTANCE hInstance = (HINSTANCE) ::GetModuleHandle(nullptr); // for creating window
+	if (nullptr == hInstance)
 	{
 		//LOG( FORMAT("GetModuleHandle fail %d", ::GetLastError()));
 		return 2;
@@ -122,7 +122,7 @@ u_int CWMType::Work (LPVOID /*param*/)
 	//wcex.cbClsExtra		= 0;
 	//wcex.cbWndExtra		= 0;
 	//wcex.hIcon			  = LoadIcon(hInstance, (LPCTSTR)IDI_CREATEWINDOW);
-	//wcex.hCursor		  = LoadCursor(NULL, IDC_ARROW);
+	//wcex.hCursor		  = LoadCursor(nullptr, IDC_ARROW);
 	//wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
 	//wcex.lpszMenuName	= (LPCTSTR)IDC_CREATEWINDOW;
 	//wcex.hIconSm		= LoadIcon(wcex.hInstance, (LPCTSTR)IDI_SMALL);
@@ -141,12 +141,12 @@ u_int CWMType::Work (LPVOID /*param*/)
 		0, 
 		CW_USEDEFAULT, 
 		0, 
-		NULL, 
-		NULL, 
+		nullptr, 
+		nullptr, 
 		hInstance, 
-		NULL);
+		nullptr);
 
-	if (NULL == m_hWnd)
+	if (nullptr == m_hWnd)
 	{
 		//LOG( FORMAT( "RegisterClassEx fail %d", ::GetLastError()));
 		return 4;
@@ -155,7 +155,7 @@ u_int CWMType::Work (LPVOID /*param*/)
 	::SetEvent( m_hEvent);    // window is created. 
 	// message loop
 	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0)) 
+	while (GetMessage(&msg, nullptr, 0, 0)) 
 	{		
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
@@ -194,9 +194,9 @@ void CWMType::SocketProc( SOCKET s, DWORD event, DWORD error)
 	{
 		// now session's socket event come
 		assert( nId > 0);
-		CSessionOfWMType * pSession = NULL;
+		CSessionOfWMType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			pSession->OnIoEvent( event, error );
 		}
@@ -219,9 +219,9 @@ void CWMType::SocketProc( SOCKET s, DWORD event, DWORD error)
 						SessionError.AcceptError( s, m_hWnd );
 						return;
 					}
-					CSessionOfWMType * pSession = NULL;
+					CSessionOfWMType * pSession = nullptr;
 					m_mapSessionMng.Find_Const( nNewId, pSession );
-					if( NULL != pSession )
+					if( nullptr != pSession )
 					{
 						pSession->Accept( s, m_hWnd );
 					}
@@ -296,9 +296,9 @@ bool CWMType::Connect ( WORD wRemotePort, DWORD wRemoteIP, DWORD dwSendBufCapaci
 		//LOG( FORMAT( "Connect fail because session is full %s, %d", ipAddr, remotePort));
 		return bResult;
 	}
-	CSessionOfWMType * pSession = NULL;
+	CSessionOfWMType * pSession = nullptr;
 	m_mapSessionMng.Find_Const( nId, pSession );
-	if( NULL != pSession )
+	if( nullptr != pSession )
 	{
 		bResult = pSession->Connect( m_hWnd, wRemotePort, wRemoteIP, dwSendBufCapacity, dwRecvBufCapacity);
 	}
@@ -310,9 +310,9 @@ bool CWMType::Send( const MESSAGE_INFO& mi, DWORD dwLen, const char * src )
 	bool bResult = false;
 	if ( mi.si.nId > 0 && mi.si.nId <= m_nMaxSession)
 	{
-		CSessionOfWMType * pSession = NULL;
+		CSessionOfWMType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Send( mi.si.nId, dwLen, src );
 		}	
@@ -325,9 +325,9 @@ bool CWMType::Close ( const MESSAGE_INFO& mi )
 	bool bResult = false;
 	if ( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfWMType * pSession = NULL;
+		CSessionOfWMType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Close( mi );
 		}
@@ -340,9 +340,9 @@ bool CWMType::Disconnect( const MESSAGE_INFO& mi )
 	bool bResult = false;
 	if ( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfWMType * pSession = NULL;
+		CSessionOfWMType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Disconnect( mi );
 		}
@@ -355,9 +355,9 @@ bool CWMType::Recv( const MESSAGE_INFO& mi, DWORD dwLen, char* dest )
 	bool bResult = false;
 	if( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfWMType * pSession = NULL;
+		CSessionOfWMType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Recv( mi.si.nId, dwLen, dest );
 		}
@@ -370,9 +370,9 @@ bool CWMType::Peek( const MESSAGE_INFO& mi, DWORD & dwLen )
 	bool bResult = false;
 	if( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfWMType * pSession = NULL;
+		CSessionOfWMType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Peek( mi.si.nId, dwLen );
 		}

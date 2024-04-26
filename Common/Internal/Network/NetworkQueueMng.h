@@ -8,7 +8,7 @@ public:
 
 	bool Enqueue( DWORD dwLen, const char * src )
 	{
-		if ( NULL == src)
+		if ( nullptr == src)
 			return false;
 		for( DWORD dw = 0; dw < dwLen; ++dw )
 		{
@@ -20,7 +20,7 @@ public:
 
 	bool Dequeue( DWORD dwLen, char * dest )
 	{
-		if( NULL == dest )
+		if( nullptr == dest )
 			return false;
 		if( dwLen > 0 )
 		{
@@ -58,7 +58,7 @@ public:
 
 	bool Enqueue( DWORD dwLen, const char * src )
 	{
-		if ( NULL == src)
+		if ( nullptr == src)
 			return false;
 		for( DWORD dw = 0; dw < dwLen; ++dw )
 		{
@@ -70,7 +70,7 @@ public:
 
 	bool Dequeue( DWORD dwLen, char * dest )
 	{
-		if( NULL == dest )
+		if( nullptr == dest )
 			return false;
 		if( dwLen > 0 )
 		{

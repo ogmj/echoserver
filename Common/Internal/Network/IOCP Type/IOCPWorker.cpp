@@ -4,8 +4,8 @@
 
 CIOCPWorker::CIOCPWorker()
 {
-	m_hIOCP = NULL;
-	m_hThreadHandle = NULL;
+	m_hIOCP = nullptr;
+	m_hThreadHandle = nullptr;
 	m_dwThreadId = 0;
 }
 
@@ -17,8 +17,8 @@ CIOCPWorker::~CIOCPWorker()
 bool CIOCPWorker::Start( HANDLE hIOCP )
 {
 	m_hIOCP = hIOCP;
-	m_hThreadHandle = reinterpret_cast< HANDLE >( ::_beginthreadex( NULL, 0, Work, reinterpret_cast< LPVOID >( m_hIOCP ), 0, reinterpret_cast< u_int* >( &m_dwThreadId ) ) );
-	if( NULL == m_hThreadHandle )
+	m_hThreadHandle = reinterpret_cast< HANDLE >( ::_beginthreadex( nullptr, 0, Work, reinterpret_cast< LPVOID >( m_hIOCP ), 0, reinterpret_cast< u_int* >( &m_dwThreadId ) ) );
+	if( nullptr == m_hThreadHandle )
 	{
 		DWORD err = ::GetLastError();
 //		LOG( FORMAT("_beginthreadex fail %d", err));
@@ -29,12 +29,12 @@ bool CIOCPWorker::Start( HANDLE hIOCP )
 
 bool CIOCPWorker::Clean()
 {
-	if( NULL != m_hThreadHandle )
+	if( nullptr != m_hThreadHandle )
 	{
 		::CloseHandle( m_hThreadHandle );
-		m_hThreadHandle = NULL;
+		m_hThreadHandle = nullptr;
 	}
-	m_hIOCP = NULL;
+	m_hIOCP = nullptr;
 	m_dwThreadId = 0;
 	return true;
 }
@@ -51,9 +51,9 @@ unsigned int CIOCPWorker::Work( LPVOID param )
 	{
 		bRet = ::GetQueuedCompletionStatus( hIocp, &dwTs, &dwKey, reinterpret_cast< LPOVERLAPPED * >( &pOverLapped ), INFINITE );
 		pIOResult = static_cast< IORESULT * >( pOverLapped );
-		if( NULL != pIOResult )
+		if( nullptr != pIOResult )
 		{
-			if( NULL != pIOResult->pSession )
+			if( nullptr != pIOResult->pSession )
 			{
 				pIOResult->pSession->OnIOCompletion( pIOResult->nEvent, bRet, dwKey, dwTs );
 			}

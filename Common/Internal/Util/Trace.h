@@ -207,7 +207,7 @@ public:
 			SetRect( &g_Rect[ i ], 25, 25+nY, 400, 50+nY );
 		}
 		SetRect( &m_InputRect, 25, 50+nY, 400, 75+nY );
-		m_hWnd = NULL;
+		m_hWnd = nullptr;
 		//m_Inputstr = "";
 
 		m_pInputLine = new CPrintInInputLine;

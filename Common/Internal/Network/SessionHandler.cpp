@@ -73,11 +73,11 @@ void CSessionHandler::Process()
 
 void CSessionHandler::ProcessAsMsg()
 {
-	MESSAGE_INFO * pMsg = NULL;
+	MESSAGE_INFO * pMsg = nullptr;
 	while( 1 )
 	{
 		pMsg = CSingleton<CMessageQueueMng>::GetInstance()->Pop();
-		if( NULL != pMsg )
+		if( nullptr != pMsg )
 		{
 			switch( pMsg->dwMessageEvent )
 			{

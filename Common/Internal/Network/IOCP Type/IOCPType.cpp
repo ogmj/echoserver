@@ -35,8 +35,8 @@ bool CIOCPType::Startup( int nMaxSession, DWORD dwThreadPerProcessor )
 	m_dwWorkerCount = dwThreadPerProcessor;
 
 	//IOCP 생성
-	m_hIOCP = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, m_dwWorkerCount );
-	if( NULL == m_hIOCP ) 
+	m_hIOCP = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, nullptr, 0, m_dwWorkerCount );
+	if( nullptr == m_hIOCP ) 
 	{
 		DWORD err = ::GetLastError();
 		//LOG( FORMAT( "CreateIoCompletionPort fail %d",err));
@@ -47,7 +47,7 @@ bool CIOCPType::Startup( int nMaxSession, DWORD dwThreadPerProcessor )
 	for( DWORD i = 0; i < m_dwWorkerCount; ++i ) 
 	{
 		CIOCPWorker* pIOCPWorker = new CIOCPWorker;
-		if ( NULL == pIOCPWorker ) 
+		if ( nullptr == pIOCPWorker ) 
 		{
 			//LOG("new fail");
 			Cleanup();
@@ -65,7 +65,7 @@ bool CIOCPType::Startup( int nMaxSession, DWORD dwThreadPerProcessor )
 	for( int nId = nMaxSession; nId > 0; --nId ) 
 	{
 		CSessionOfIOCPType* p  = new CSessionOfIOCPType( nId, m_hIOCP );
-		if( NULL == p ) 
+		if( nullptr == p ) 
 		{
 			//LOG("new fail");
 			Cleanup();
@@ -86,7 +86,7 @@ bool CIOCPType::Cleanup()
 	for( size_t i = 0; i < m_vecIOCPWorkerMng.size(); ++i )
 	{
 		workerThreads.push_back( m_vecIOCPWorkerMng[ i ]->GetThreadHandle() );
-		::PostQueuedCompletionStatus( m_hIOCP, 0, 0xFFFFFFFF, NULL ); // post exit message to worker thread
+		::PostQueuedCompletionStatus( m_hIOCP, 0, 0xFFFFFFFF, nullptr ); // post exit message to worker thread
 
 	}
 	::WaitForMultipleObjects( (DWORD)m_vecIOCPWorkerMng.size(), &workerThreads[ 0 ], true, INFINITE );
@@ -99,7 +99,7 @@ bool CIOCPType::Cleanup()
 
 	for( int nId = m_nMaxSession; nId > 0; --nId )
 	{
-		CSessionOfIOCPType* p = NULL;
+		CSessionOfIOCPType* p = nullptr;
 		if( true == m_mapSessionMng.Find_Const( nId, p ) )
 		{
 			delete p;
@@ -115,7 +115,7 @@ bool CIOCPType::Cleanup()
 bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD dwSendBufCapacity, DWORD dwRecvBufCapacity )
 {
 	CAcceptorOfIOCPType * a = new CAcceptorOfIOCPType;
-	if (NULL == a)
+	if (nullptr == a)
 	{
 //		LOG("new fail");
 		return false;
@@ -140,7 +140,7 @@ bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD 
 	addr.sin_port         = htons( wLocalPort );
 
 	// link listen socket to iocp
-	if( NULL == ::CreateIoCompletionPort( reinterpret_cast< HANDLE >( a->m_sListener ), m_hIOCP, NULL, 0 ) ) 
+	if( nullptr == ::CreateIoCompletionPort( reinterpret_cast< HANDLE >( a->m_sListener ), m_hIOCP, 0, 0 ) ) 
 	{
 		DWORD err = ::GetLastError();
 //		LOG( FORMAT( "CreateIoCompletionPort fail %d",err));
@@ -159,7 +159,7 @@ bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD 
 	}
 
 	// get AcceptEx and GetAcceptExSockaddrs functions
-	if (NULL == g_lpfnAcceptEx) 
+	if (nullptr == g_lpfnAcceptEx) 
 	{
 		GUID guidAcceptEx = WSAID_ACCEPTEX;
 		DWORD dwBytes;
@@ -170,8 +170,8 @@ bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD 
 			&g_lpfnAcceptEx,
 			sizeof(g_lpfnAcceptEx), 
 			&dwBytes,
-			NULL,
-			NULL)) 
+			nullptr,
+			nullptr)) 
 		{
 			int err = ::WSAGetLastError();
 //			LOG( FORMAT( "WSAIoctl fail %d",err));
@@ -180,7 +180,7 @@ bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD 
 		}
 	}
 
-	if (NULL == g_lpfnGetAcceptExSockaddrs) 
+	if (nullptr == g_lpfnGetAcceptExSockaddrs) 
 	{
 		GUID  guidGetAcceptExSockaddrs = WSAID_GETACCEPTEXSOCKADDRS;
 		DWORD dwBytes;
@@ -191,8 +191,8 @@ bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD 
 			&g_lpfnGetAcceptExSockaddrs,
 			sizeof(g_lpfnGetAcceptExSockaddrs),
 			&dwBytes,
-			NULL,
-			NULL)) 
+			nullptr,
+			nullptr)) 
 		{
 			int err = ::WSAGetLastError();
 //			LOG( FORMAT( "WSAIoctl fail %d", err));
@@ -218,7 +218,7 @@ bool CIOCPType::Accept( int nMaxAccept, WORD wLocalPort, DWORD dwLocalIP, DWORD 
 //			LOG( FORMAT( "CManager::AcceptEx not enough session %d, %d", maxAccept,i));
 			break;
 		}
-		CSessionOfIOCPType* pSession = NULL;
+		CSessionOfIOCPType* pSession = nullptr;
 		if( true == m_mapSessionMng.Find_Const( nId, pSession ) )
 		{
 			pSession->AcceptEx( a->m_sListener, dwSendBufCapacity, dwRecvBufCapacity );
@@ -239,9 +239,9 @@ bool CIOCPType::Connect( WORD wRemotePort, DWORD wRemoteIP, DWORD dwSendBufCapac
 		return bResult;
 	}
 
-	CSessionOfIOCPType * pSession = NULL;
+	CSessionOfIOCPType * pSession = nullptr;
 	m_mapSessionMng.Find_Const( nId, pSession );
-	if( NULL != pSession )
+	if( nullptr != pSession )
 	{
 		bResult = pSession->Connect( wRemotePort, wRemoteIP, dwSendBufCapacity, dwRecvBufCapacity);
 	}
@@ -253,9 +253,9 @@ bool CIOCPType::Send( const MESSAGE_INFO & mi,  DWORD dwLen, const char* src )
 	bool bResult = false;
 	if ( mi.si.nId > 0 && mi.si.nId <= m_nMaxSession)
 	{
-		CSessionOfIOCPType * pSession = NULL;
+		CSessionOfIOCPType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Send( mi.si.nId, dwLen, src );
 		}	
@@ -268,9 +268,9 @@ bool CIOCPType::Peek( const MESSAGE_INFO & mi, DWORD & dwLen )
 	bool bResult = false;
 	if( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfIOCPType * pSession = NULL;
+		CSessionOfIOCPType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Peek( mi.si.nId, dwLen );
 		}
@@ -283,9 +283,9 @@ bool CIOCPType::Recv( const MESSAGE_INFO & mi, DWORD dwLen, char* dest )
 	bool bResult = false;
 	if( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfIOCPType * pSession = NULL;
+		CSessionOfIOCPType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Recv( mi.si.nId, dwLen, dest );
 		}
@@ -298,9 +298,9 @@ bool CIOCPType::Close( const MESSAGE_INFO & mi)
 	bool bResult = false;
 	if ( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfIOCPType * pSession = NULL;
+		CSessionOfIOCPType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Close( mi );
 		}
@@ -313,9 +313,9 @@ bool CIOCPType::Disconnect( const MESSAGE_INFO& mi )
 	bool bResult = false;
 	if ( mi.si.nId > 0 || mi.si.nId <= m_nMaxSession )
 	{
-		CSessionOfIOCPType * pSession = NULL;
+		CSessionOfIOCPType * pSession = nullptr;
 		m_mapSessionMng.Find_Const( mi.si.nId, pSession );
-		if( NULL != pSession )
+		if( nullptr != pSession )
 		{
 			bResult = pSession->Disconnect( mi );
 		}

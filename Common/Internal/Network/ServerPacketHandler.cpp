@@ -55,7 +55,7 @@ bool CServerPacketHandler::Send( CBasePacket * pPacket, int nFromId )
 {
 	bool bResult = FALSE;
 
-	if ( NULL == pPacket || 0 == pPacket->nSize )
+	if ( nullptr == pPacket || 0 == pPacket->nSize )
 		return bResult;
 	//	if ( DPID_ALLPLAYERS == dwFrom )
 	if ( 0 == nFromId )
@@ -74,7 +74,7 @@ bool CServerPacketHandler::Send( CBasePacket * pPacket, int nFromId )
 
 bool CServerPacketHandler::SendToAll( char* pBuffer, DWORD dwLen )
 {
-	if ( 0 == dwLen || NULL == pBuffer)
+	if ( 0 == dwLen || nullptr == pBuffer)
 		return FALSE;
 
 	for( CMapID2MIMngItor it = m_Id2MIMng.begin(); it != m_Id2MIMng.end(); ++it )
@@ -91,7 +91,7 @@ bool CServerPacketHandler::SendPacket( char* pBuffer, DWORD dwLen, int nFromId )
 {
 	bool bResult = FALSE;
 
-	if ( 0 == dwLen || NULL == pBuffer )
+	if ( 0 == dwLen || nullptr == pBuffer )
 		return FALSE;
 
 	static char buffer[MAX_PACKET_SIZE];
@@ -131,7 +131,7 @@ bool CServerPacketHandler::GetPlayerAddr( int nFromId, char* lpAddr )
 {
 	bool bResult = FALSE;
 
-	if (NULL == lpAddr)
+	if (nullptr == lpAddr)
 		return FALSE;
 
 	//CMapID2MIMng::const_accessor accessor;
