@@ -62,7 +62,7 @@ bool CClientPacketHandler::Send( CBasePacket * pPacket, int nFromId )
 {
 	bool bResult = FALSE;
 
-	if ( NULL == pPacket || 0 == pPacket->nSize )
+	if ( nullptr == pPacket || 0 == pPacket->nSize )
 		return bResult;
 	if ( 0 == TO_ALL )
 	{

@@ -24,7 +24,7 @@ void CNetClientJhc::SysMessageHandler( LPDPMSG_GENERIC lpMsg, DWORD dwMsgSize, i
 	{
 	case DPSYS_CREATEPLAYERORGROUP:
 		{
-			SetTimer( g_hWnd, 1, 1000, NULL );
+			SetTimer( g_hWnd, 1, 1000, nullptr );
 			//SendCSEchoMsg();
 			break;
 		}
