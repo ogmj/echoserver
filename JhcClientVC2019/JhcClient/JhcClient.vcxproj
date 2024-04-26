@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{125CA2E9-2C60-48B1-8107-D8787B9EFC76}</ProjectGuid>
+    <RootNamespace>JhcClient</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.30028.132</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>../../Common/External/tbb-2020.2-win/tbb/lib/intel64/vc14;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../Common/External/tbb-2020.2-win/tbb/include/tbb;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../../Common/External/tbb-2020.2-win/tbb/include/tbb;$(IncludePath)</IncludePath>
+    <LibraryPath>../../Common/External/tbb-2020.2-win/tbb/lib/intel64/vc14;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\Common\Include;..\..\Common\External\unittest-cpp-1.4\src;..\..\Common\External\UnitTestUtil;..\..\Common\Internal\Network;..\..\Common\Internal\Network\Packet;..\..\Common\Internal\Util;..\..\Common\Internal\Network\WM Type;..\..\Common\Internal\Network\IOCP Type;..\..\Common\External\tbb30\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;UnitTest++.vsnet2005.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Common\Lib;..\..\Common\Lib\tbb30\ia32\vc8;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;..\..\Common\Include;..\..\Common\External\unittest-cpp-1.4\src;..\..\Common\External\UnitTestUtil;..\..\Common\Internal\Network;..\..\Common\Internal\Network\Packet;..\..\Common\Internal\Util;..\..\Common\Internal\Network\WM Type;..\..\Common\Internal\Network\IOCP Type;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x501;WIN64;_WIN64;_DEBUG;_WINDOWS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;UnitTest++.vsnet2005.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Common\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>_WINSOCK_DEPRECATED_NO_WARNINGS;WIN64;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\Common\Include;..\..\Common\External\UnitTestUtil;..\..\Common\Internal\Network;..\..\Common\Internal\Network\Packet;..\..\Common\Internal\Util;..\..\Common\Internal\Network\WM Type;..\..\Common\Internal\Network\IOCP Type;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Common\Internal\Network\ClientPacketHandler.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\AcceptorOfIOCPType.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\IOCPType.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\IOCPWorker.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\SessionOfIOCPType.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\SessionHandler.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\SessionIndexMng.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\TypeMng.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\AcceptorOfWMType.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\SessionOfWMType.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\ToGetIndexBySocketMng.cpp" />
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\WMType.cpp" />
+    <ClCompile Include="ClientSessionHandler.cpp" />
+    <ClCompile Include="JhcClient.cpp" />
+    <ClCompile Include="NetClientJhc.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Common\Internal\Network\BasePacket.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\BasePacketHandler.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\ClientPacketHandler.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\AcceptorOfIOCPType.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\IOCPType.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\IOCPWorker.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\IOResult.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\SessionOfIOCPType.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\messagequeuemng.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\MsgHdr.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\NetworkQueueMng.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\Packet\TestPacket.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\SessionHandler.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\SessionIndexMng.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\Type.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\TypeMng.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\AcceptorOfWMType.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\SessionOfWMType.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\ToGetIndexBySocketMng.h" />
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\WMType.h" />
+    <ClInclude Include="..\..\Common\Internal\Util\CmnHdr.h" />
+    <ClInclude Include="..\..\Common\Internal\Util\MessageType.h" />
+    <ClInclude Include="ClientSessionHandler.h" />
+    <ClInclude Include="JhcClient.h" />
+    <ClInclude Include="NetClientJhc.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="JhcClient.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JhcClient.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

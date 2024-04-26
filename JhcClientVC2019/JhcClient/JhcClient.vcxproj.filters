@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\Common">
+      <UniqueIdentifier>{a94c87b8-f42a-43b6-8b40-6918b16b630d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Network">
+      <UniqueIdentifier>{03d787d1-e419-42c1-97f4-82c562a2f779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Network\Packet">
+      <UniqueIdentifier>{daac8abd-7d1c-4b87-9d12-cb4a4ed0ee84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Network\WM Type">
+      <UniqueIdentifier>{118bfd21-2d5f-40cd-92ce-be206309aded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Network\IOCP Type">
+      <UniqueIdentifier>{20d66bc6-c7db-40b4-995e-0505ccc5b617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ClientSessionHandler.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="JhcClient.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NetClientJhc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\ClientPacketHandler.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\SessionHandler.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\SessionIndexMng.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\ToGetIndexBySocketMng.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\TypeMng.cpp">
+      <Filter>소스 파일\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\AcceptorOfWMType.cpp">
+      <Filter>소스 파일\Network\WM Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\SessionOfWMType.cpp">
+      <Filter>소스 파일\Network\WM Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\WM Type\WMType.cpp">
+      <Filter>소스 파일\Network\WM Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\AcceptorOfIOCPType.cpp">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\IOCPType.cpp">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\IOCPWorker.cpp">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Internal\Network\IOCP Type\SessionOfIOCPType.cpp">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ClientSessionHandler.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="JhcClient.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="NetClientJhc.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Util\CmnHdr.h">
+      <Filter>소스 파일\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Util\MessageType.h">
+      <Filter>소스 파일\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\BasePacket.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\BasePacketHandler.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\ClientPacketHandler.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\messagequeuemng.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\MsgHdr.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\NetworkQueueMng.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\SessionHandler.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\SessionIndexMng.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\ToGetIndexBySocketMng.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\Type.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\TypeMng.h">
+      <Filter>소스 파일\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\Packet\TestPacket.h">
+      <Filter>소스 파일\Network\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\AcceptorOfWMType.h">
+      <Filter>소스 파일\Network\WM Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\SessionOfWMType.h">
+      <Filter>소스 파일\Network\WM Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\WM Type\WMType.h">
+      <Filter>소스 파일\Network\WM Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\AcceptorOfIOCPType.h">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\IOCPType.h">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\IOCPWorker.h">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\IOResult.h">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Internal\Network\IOCP Type\SessionOfIOCPType.h">
+      <Filter>소스 파일\Network\IOCP Type</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="JhcClient.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JhcClient.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

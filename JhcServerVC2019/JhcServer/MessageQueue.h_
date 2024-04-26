@@ -1,0 +1,30 @@
+#pragma once
+
+using namespace tbb;
+
+typedef concurrent_queue<MESSAGE_INFO*> CMessageQueueMng;
+
+class CMessageQueue
+{
+public:
+	CMessageQueue(){}
+	virtual ~CMessageQueue()
+	{
+		MESSAGE_INFO * p = NULL;
+		while(  this->Pop( p ) != NULL )
+			delete p;
+	}
+	LPMESSAGE_INFO Pop( MESSAGE_INFO * p )
+	{
+		m_queueMessageMng.try_pop( p );
+		return p;
+	}
+	void Push( MESSAGE_INFO * p )
+	{
+		m_queueMessageMng.push( p );
+	}
+
+private:
+	CMessageQueueMng m_queueMessageMng;
+	
+};
